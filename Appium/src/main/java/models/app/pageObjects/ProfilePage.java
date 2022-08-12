@@ -10,8 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.Arrays;
 import java.util.List;
 
-public class SignupPage extends HelperLibrary {
-    public SignupPage() {
+public class ProfilePage extends HelperLibrary {
+
+    public ProfilePage() {
         PageFactory.initElements(new AppiumFieldDecorator(BaseLibrary.driver), this);
     }
 
@@ -20,23 +21,21 @@ public class SignupPage extends HelperLibrary {
     @AndroidFindBy(id = "heading")
     private MobileElement header;
 
+    @AndroidFindBy(id = "logout")
+    private MobileElement logout;
+
+    @AndroidFindBy(className = "android.widget.ImageView")
+    private MobileElement photo;
+
     @AndroidFindBy(id = "username")
     private MobileElement username;
 
-    @AndroidFindBy(id = "password")
-    private MobileElement password;
-
-    @AndroidFindBy(id = "password2")
-    private MobileElement confirmPassword;
-
-    @AndroidFindBy(id = "signup")
-    private MobileElement signup;
-
-    @AndroidFindBy(id = "progress")
-    private MobileElement progressAnimation;
-
     @AndroidFindBy(id = "name")
     private List<MobileElement> skillNames;
+
+    public boolean verifyLoggedInMessage(String msg) throws Throwable {
+        return verifyElementIsDisplayed(androidScrollToElementUsingUiScrollable("text", msg));
+    }
 
     public boolean verifySkillsDisplayed() {
         boolean bResult = false;
@@ -47,15 +46,19 @@ public class SignupPage extends HelperLibrary {
         return bResult;
     }
 
-    public boolean verifySignUpPage() {
-        return getTextFromElement(header).equalsIgnoreCase("SIGN UP");
+    public boolean verifyUserNameDisplayed() {
+        return verifyElementIsDisplayed(username);
     }
 
-    public boolean createNewUser(String userName, String passkey) {
-        enterValue(username, userName);
-        enterValue(password, passkey);
-        enterValue(confirmPassword, passkey);
-        clickElement(signup);
-        return verifyElementIsDisplayed(progressAnimation);
+    public boolean verifyProfilePage() {
+        return getTextFromElement(header).equalsIgnoreCase("PROFILE");
+    }
+
+    public boolean verifyProfileImage() {
+        return verifyElementIsDisplayed(photo);
+    }
+
+    public void clickLogout() {
+        clickElement(logout);
     }
 }

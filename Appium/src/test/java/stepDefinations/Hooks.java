@@ -1,9 +1,10 @@
 package stepDefinations;
 
+import baseLibrary.HelperLibrary;
 import io.cucumber.java.*;
-import main.baseLibrary.HelperLibrary;
 
-public class Hooks extends HelperLibrary{
+
+public class Hooks extends HelperLibrary {
 
     @Before
     public void startScenario(Scenario scenario) throws Exception{

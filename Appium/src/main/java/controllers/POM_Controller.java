@@ -1,9 +1,8 @@
 package controllers;
 
-import models.pageObejcts.*;
+import models.app.pageObjects.*;
 
-public class POM_Controller{
-
+public class POM_Controller {
     private LoginPage loginPage;
     private SignupPage signupPage;
 
@@ -13,13 +12,13 @@ public class POM_Controller{
 
     public LoginPage getLoginPage() {
         return (
-            loginPage==null ? new loginPage(): loginPage
+                loginPage==null ? new LoginPage(): loginPage
         );
     }
 
     public SignupPage getSignupPage() {
         return (
-            signupPage==null ? new signupPage(): signupPage
+                signupPage==null ? new SignupPage(): signupPage
         );
     }
 }

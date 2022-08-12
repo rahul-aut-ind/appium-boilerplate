@@ -1,27 +1,22 @@
 package baseLibrary;
 
-
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
-
+import io.appium.java_client.appmanagement.ApplicationState;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.SessionId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.appmanagement.ApplicationState;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 
-public class BaseLibrary{
-
-    public static MobileDriver driver;
+public class BaseLibrary {
+    public static AndroidDriver driver;
     public static URL appiumURL;
     public static final Logger logger= LoggerFactory.getLogger(BaseLibrary.class);
     public static DesiredCapabilities caps= null;
@@ -45,7 +40,6 @@ public class BaseLibrary{
 
         caps = new DesiredCapabilities();
 
-        // caps.setCapability("deviceName",sAndroidDevice);
         caps.setCapability("udid",sAndroidDevice);
         caps.setCapability("platformName","Android");
         caps.setCapability("appPackage",sBundleId);
@@ -57,7 +51,7 @@ public class BaseLibrary{
 
         driver= new AndroidDriver<AndroidElement>(appiumURL, caps);
 
-        driver.manage().timeouts.implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         session = ((AndroidDriver<AndroidElement>)driver).getSessionId();
 
@@ -76,4 +70,5 @@ public class BaseLibrary{
     public static void closeDriver(){
         driver.quit();
     }
+
 }

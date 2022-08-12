@@ -16,7 +16,7 @@ import io.appium.java_client.android.AndroidElement;
 
 
 public class BaseLibrary {
-    public static AndroidDriver driver;
+    public static MobileDriver driver;
     public static URL appiumURL;
     public static final Logger logger= LoggerFactory.getLogger(BaseLibrary.class);
     public static DesiredCapabilities caps= null;
@@ -32,7 +32,7 @@ public class BaseLibrary {
         sAndroidDevice= System.getProperty("deviceID");
 
         try{
-            appiumURL = new URL("http://127.0.0.1:4723/wd/hd");
+            appiumURL = new URL("http://0.0.0.0:4723/wd/hub");
         }catch(MalformedURLException e){}
     }
 
@@ -43,7 +43,7 @@ public class BaseLibrary {
         caps.setCapability("udid",sAndroidDevice);
         caps.setCapability("platformName","Android");
         caps.setCapability("appPackage",sBundleId);
-        //caps.setCapability("appActivity",sAppActivity);
+        caps.setCapability("appActivity",sAppActivity);
 
         caps.setCapability("automationName","UiAutomator2");
 

@@ -9,7 +9,6 @@ public class Hooks extends HelperLibrary {
     @Before
     public void startScenario(Scenario scenario) throws Exception{
         logger.info("*** Starting Scenario - %s ***",scenario.getName());
-        setup_AndroidDriver();
     }
 
     @After
